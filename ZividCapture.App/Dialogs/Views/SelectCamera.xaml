@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="ZividCapture.App.Dialogs.Views.SelectCamera"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ZividCapture.App.Dialogs.Views"
+             mc:Ignorable="d" 
+             IsEnabled="{Binding IsEnable}"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:converters="clr-namespace:ZividCapture.App.Converters"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:InvertableBooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    <prism:Dialog.WindowStyle>
+        <Style TargetType="Window">
+            <Setter Property="SizeToContent" Value="WidthAndHeight"/>
+            <Setter Property="ResizeMode" Value="NoResize"/>
+            <Setter Property="ShowInTaskbar" Value="False"/>
+            <Setter Property="WindowStyle" Value="ToolWindow"/>
+            <Setter Property="Title" Value="{Binding Title}"/>
+        </Style>
+    </prism:Dialog.WindowStyle>
+    <Grid Height="300" 
+          Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <ProgressBar IsIndeterminate="True"
+                     Grid.Row="1"
+                     Visibility="{Binding IsEnable, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
+        <Button Content="  Search Cameras  "
+                HorizontalAlignment="Right"
+                Command="{Binding SearchCamerasCommand}"/>
+        <DataGrid VerticalAlignment="Stretch" 
+                  HeadersVisibility="Column"
+                  SelectionMode="Single"
+                  AutoGenerateColumns="False"
+                  Grid.Row="2"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding Cameras}"
+                  SelectedItem="{Binding SelectedCamera, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Manufacturor"
+                                    Binding="{Binding Camera.Manufacturor}"
+                                    Width="90"/>
+                <DataGridTextColumn Header="Product Name"
+                                    Binding="{Binding Camera.ProductName}"
+                                    Width="150"/>
+                <DataGridTextColumn Header="Serial Number"
+                                    Binding="{Binding Camera.SerialNumber}"
+                                    Width="150"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="OK" 
+                    Command="{Binding OKCommand}"/>
+            <Button Content="Cancel" 
+                    Grid.Column="1"
+                    Command="{Binding CancelCommand}"/>
+        </Grid>
+
+    </Grid>
+</UserControl>
