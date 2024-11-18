@@ -1,6 +1,7 @@
 # vs_zividcapture
 Zivid 데이터 촬영 프로그램(Windows Application) 입니다<br>
-
+[사용법](https://www.notion.so/plaif/142ba69e7a8780a083b0ed3201c97d2c) <br>
+<br>
 Dependencies
  - .NET 8.0 WPF
  - [Zivid SDK 2.12.0](https://downloads.zivid.com/sdk/releases/2.12.0+6afd4961-1/windows/ZividSetup_2.12.0+6afd4961-1.exe) <- 설치 필수~~!!!!!
