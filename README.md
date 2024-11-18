@@ -1,5 +1,5 @@
 # vs_zividcapture
-Zivid 데이터 촬영 프로그램 입니다<br>
+Zivid 데이터 촬영 프로그램(Windows Application) 입니다<br>
 
 Dependencies
  - .NET 8.0 WPF
